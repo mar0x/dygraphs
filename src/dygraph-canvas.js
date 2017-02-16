@@ -738,6 +738,7 @@ DygraphCanvasRenderer._fillPlotter = function(e) {
 
     var fillAlpha = g.getNumericOption('fillAlpha', setName);
     var stepPlot = g.getBooleanOption('stepPlot', setName);
+    stackedGraph = g.getBooleanOption("stackedGraph", setName);
     var color = colors[setIdx];
     var axis = g.axisPropertiesForSeries(setName);
     var axisY = 1.0 + axis.minyval * axis.yscale;

@@ -180,10 +180,10 @@ Dygraph.prototype.__init__ = function(div, file, attrs) {
   this.height_ = div.clientHeight || attrs.height || 0;
 
   // TODO(danvk): set fillGraph to be part of attrs_ here, not user_attrs_.
-  if (attrs.stackedGraph) {
-    attrs.fillGraph = true;
+//  if (attrs.stackedGraph) {
+//    attrs.fillGraph = true;
     // TODO(nikhilk): Add any other stackedGraph checks here.
-  }
+//  }
 
   // DEPRECATION WARNING: All option processing should be moved from
   // attrs_ and user_attrs_ to options_, which holds all this information.
@@ -2242,13 +2242,13 @@ Dygraph.prototype.gatherDatasets_ = function(rolledSeries, dateWindow) {
     var seriesPoints = this.dataHandler_.seriesToPoints(series,
         seriesName, boundaryIds[seriesIdx-1][0]);
 
-    if (this.getBooleanOption("stackedGraph")) {
+    if (this.getBooleanOption("stackedGraph", seriesName)) {
       axisIdx = this.attributes_.axisForSeries(seriesName);
       if (cumulativeYval[axisIdx] === undefined) {
         cumulativeYval[axisIdx] = [];
       }
       Dygraph.stackPoints_(seriesPoints, cumulativeYval[axisIdx], seriesExtremes,
-                           this.getBooleanOption("stackedGraphNaNFill"));
+                           this.getBooleanOption("stackedGraphNaNFill", seriesName));
     }
 
     extremes[seriesName] = seriesExtremes;

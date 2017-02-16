@@ -237,13 +237,13 @@ DygraphLayout.calcYNormal_ = function(axis, value, logscale) {
 };
 
 DygraphLayout.prototype._evaluateLineCharts = function() {
-  var isStacked = this.dygraph_.getOption("stackedGraph");
   var isLogscaleForX = this.dygraph_.getOptionForAxis("logscale", 'x');
 
   for (var setIdx = 0; setIdx < this.points.length; setIdx++) {
     var points = this.points[setIdx];
     var setName = this.setNames[setIdx];
     var connectSeparated = this.dygraph_.getOption('connectSeparatedPoints', setName);
+    var isStacked = this.dygraph_.getOption("stackedGraph", setName);
     var axis = this.dygraph_.axisPropertiesForSeries(setName);
     // TODO (konigsberg): use optionsForAxis instead.
     var logscale = this.dygraph_.attributes_.getForSeries("logscale", setName);
